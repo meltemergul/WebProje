@@ -1,0 +1,100 @@
+﻿@model webproje.Models.Uye
+@using webproje.Models
+
+@{
+    ViewBag.Title = "Üye Güncelle";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="container-fluid mt-5 ">
+    <div class="row">
+        <div class="col-sm-4">
+            <h3>Üyeler</h3>
+
+            <ul class="nav nav-pills flex-column" style="font-weight: bold;">
+                <li class="nav-item">
+                    <a class="nav-link text-black " href="@Url.Action("UyeListele", "Uye")">LİSTELE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black" href="@Url.Action("UyeEkle", "Uye")">EKLE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black " href="@Url.Action("UyeSil", "Uye")">SİL</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" style="background-color:steelblue" href="@Url.Action("UyeGuncelle", "Uye")">GÜNCELLE</a>
+                </li>
+            </ul>
+            <hr class="d-sm-none">
+        </div>
+        <div class="col-sm-8">
+            <h3>Üye Güncelle</h3>
+            <hr />
+            @using (Html.BeginForm("UyeGuncelle", "Uye", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                <div class="form-horizontal">
+                    <h4>Üye Bilgileri</h4>
+                    <hr />
+
+
+                    @Html.HiddenFor(model => model.uyeId)
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.uyeAdi, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.uyeAdi, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.uyeAdi, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.uyeSoyadi, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.uyeSoyadi, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.uyeSoyadi, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.eposta, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.eposta, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.eposta, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.sifre, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.sifre, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.sifre, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.telefon, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.telefon, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.telefon, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.uyeAdresId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.uyeAdresId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.uyeAdresId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Güncelle" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,23 @@
+﻿@using webproje.Models
+@Model List<Kategoriler></Kategoriler>
+
+
+@{
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+<table class="table-bordered">
+    <tr>
+        <th>Kategori Id</th>
+        <th>Kategori Adı</th>
+    </tr>
+    <tbody>
+        @foreach (var kategori in Model)
+        {
+            <tr>
+                <td> @kategori.kategoriAdi</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,43 @@
+﻿@model List<webproje.Models.Uye>
+
+@{
+    ViewBag.Title = " Uye Sil";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="container-fluid mt-5 ">
+    <h3>Markaları Sil</h3>
+
+    <table class="table table-bordered">
+        <tr>
+            <th>Üye Id</th>
+            <th>Üye Adı</th>
+            <th>Üye Soyadı</th>
+            <th>Eposta</th>
+            <th>Şifre</th>
+            <th>Telefon</th>
+            <th>Uye Adres Id</th>
+            <th>İşlemler</th>
+        </tr>
+        <tbody>
+            @foreach (var uye in Model)
+            {
+                <tr>
+                    <td>@uye.uyeId</td>
+                    <td> @uye.uyeAdi</td>
+                    <td>@uye.uyeSoyadi</td>
+                    <td> @uye.eposta</td>
+                    <td>@uye.sifre</td>
+                    <td> @uye.telefon</td>
+                    <td>@uye.uyeAdresId</td>
+                    <td>
+                        <a href="@Url.Action("UyeSil", "Uye", new { uyeId=uye.uyeId })" class="btn btn-danger btn-sm  fw-bold">Sil</a>
+                        <a href="@Url.Action("UyeGuncelle", "Uye", new { uyeId=uye.uyeId})" class="btn btn-warning btn-sm fw-bold">Güncelle</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+  
+</div>
+

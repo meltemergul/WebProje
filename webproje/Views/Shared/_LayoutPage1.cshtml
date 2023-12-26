@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Çanta</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+  
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm " style="background-color:steelblue; color:white; font-weight:bold">
+        <div class="container">
+            @Html.ActionLink("Admin Paneli", "Index", "Admin", new { area = "" }, new { @class = "nav-link" })
+            <div class="nav  justify-content-end" style="color:white">
+                <ul class="navbar-nav flex-grow-1 " style="color:white">
+                    <li>@Html.ActionLink("Ürünler", "UrunListele", "Urun", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Siparişler", "SiparisListele", "Siparis", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Kargolar", "KargoListele", "Kargo", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Üyeler", "UyeListele", "Uye", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Kategoriler", "KategoriListele", "Kategori", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Markalar", "MarkaListele", "Marka", new { area = "" }, new { @class = "nav-link" })</li>
+                </ul>
+            </div>
+            </div>
+    </nav>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Web Proje</p>
+        </footer>
+    </div>
+    
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,131 @@
+﻿@model webproje.Models.Urun
+@using webproje.Models
+
+@{
+    ViewBag.Title = "Ürün Güncelle";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-sm-4">
+            <h3>Ürünler</h3>
+            <ul class="nav nav-pills flex-column" style="font-weight: bold;">
+                <li class="nav-item">
+                    <a class="nav-link text-black"  href="@Url.Action("UrunListele", "Urun")">LİSTELE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black" href="@Url.Action("UrunEkle", "Urun")">EKLE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black " href=" @Url.Action("UrunSil", "Urun") ">SİL</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link  active" style="background-color:steelblue" href=" @Url.Action("UrunGüncelle", "Urun") ">GÜNCELLE</a>
+                </li>
+
+            </ul>
+            <hr class="d-sm-none">
+        </div>
+        <div class="col-sm-8">
+            <h3>Ürün Güncelle</h3>
+            <hr />
+            @using (Html.BeginForm("UrunGuncelle", "Urun", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                <div class="form-horizontal">
+                    <h4>Ürün Bilgileri</h4>
+                    <hr />
+
+                    @Html.HiddenFor(model => model.urunId)
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.urunAdi, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.urunAdi, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.urunAdi, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.urunAciklama, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.urunAciklama, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.urunAciklama, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.fiyat, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.fiyat, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.fiyat, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.renk, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.renk, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.renk, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.kategoriId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.kategoriId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.kategoriId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.markaId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.markaId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.markaId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.urunYorumId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.urunYorumId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.urunYorumId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.urunFoto, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-8">
+                            <input type="file" name="UrunFoto" id="UrunFoto" style="display: none;" onchange="dosyaAdiniGuncelle()" />
+                            <input type="text" id="UrunFotoAdi" class="form-control" readonly />
+                            <label for="UrunFoto" class="btn btn-primary">Gözat</label>
+                            @Html.ValidationMessageFor(model => model.urunFoto, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.urunStok, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.urunStok, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.urunStok, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Güncelle" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    function dosyaAdiniGuncelle() {
+        var dosyaAdi = document.getElementById("UrunFoto").value.split("\\").pop();
+        document.getElementById("UrunFotoAdi").value = dosyaAdi;
+    }
+</script>

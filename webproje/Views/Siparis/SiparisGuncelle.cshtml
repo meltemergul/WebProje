@@ -1,0 +1,108 @@
+﻿@model webproje.Models.Siparis
+@using webproje.Models
+
+@{
+    ViewBag.Title = "Sipariş Güncelle";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-sm-4">
+            <h3>Siparişler</h3>
+            <ul class="nav nav-pills flex-column" style="font-weight: bold;">
+                <li class="nav-item">
+                    <a class="nav-link text-black " href="@Url.Action("SiparisListele", "Siparis")">LİSTELE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black" href="@Url.Action("SiparisEkle", "Siparis")">EKLE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black " href="@Url.Action("SiparisSil", "Siparis")">SİL</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link  active " style="background-color:steelblue" href="@Url.Action("SiparisGüncelle", "Siparis")">GÜNCELLE</a>
+                </li>
+
+            </ul>
+
+        </div>
+        <div class="col-sm-8">
+            <h3>Sipariş Güncelle</h3>
+            <hr />
+            @using (Html.BeginForm("SiparisGuncelle", "Siparis", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                <div class="form-horizontal">
+                    <h4>Sipariş Bilgileri</h4>
+                    <hr />
+
+                    @Html.HiddenFor(model => model.siparisId)
+                    @Html.AntiForgeryToken()
+
+
+                    <!-- Urun Id -->
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.urunId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.urunId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.urunId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <!-- Sipariş Tarihi -->
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.siparisTarihi, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.siparisTarihi, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.siparisTarihi, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <!-- Uye Id -->
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.uyeId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.uyeId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.uyeId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <!-- Adet -->
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.adet, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.adet, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.adet, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <!-- Kargo Id -->
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.kargoId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.kargoId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.kargoId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <!-- Siparis Durum Id -->
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.siparisDurumId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.siparisDurumId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.siparisDurumId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Güncelle" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

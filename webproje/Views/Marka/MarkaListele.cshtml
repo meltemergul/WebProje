@@ -1,0 +1,65 @@
+﻿
+@using webproje.Models
+@model List<webproje.Models.Marka>
+@{
+    ViewBag.Title = "Markalar";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="container-fluid mt-5 ">
+    <div class="row">
+        <div class="col-sm-4">
+            <h3>Markalar</h3>
+
+            <ul class="nav nav-pills flex-column" style="font-weight: bold;">
+                <li class="nav-item">
+                    <a class="nav-link active " style="background-color:steelblue" href="@Url.Action("MarkaListele", "Marka")">LİSTELE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black" href="@Url.Action("MarkaEkle", "Marka")">EKLE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black " href="@Url.Action("MarkaSil", "Marka")">SİL</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black" href="@Url.Action("MarkaGuncelle", "Marka")">GÜNCELLE</a>
+                </li>
+
+            </ul>
+            <hr class="d-sm-none">
+        </div>
+        <div class="col-sm-8">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th>Marka Id</th>
+                    <th>Marka Adı</th>
+                    <th>İşlemler</th>
+                </tr>
+                <tbody>
+                    @foreach (var markalar in Model)
+                    {
+                        <tr>
+                            <td> @markalar.markaId</td>
+                            <td> @markalar.markaAdi</td>
+                            <td>
+                                <a href="@Url.Action("MarkaSil", "Marka", new { markaId = markalar.markaId })" class="btn btn-danger btn-sm  fw-bold">Sil</a>
+                                <a href="@Url.Action("MarkaGuncelle", "Marka", new { markaId = markalar.markaId })" class="btn btn-warning btn-sm fw-bold">Güncelle</a>
+                            </td>
+
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+            <script>
+      function MarkaSil(markaId) {
+          if (confirm('Bu markayı silmek istediğinizden emin misiniz?')) {
+              window.location.href = '@Url.Action("MarkaSil", "Marka")?markaId=' + markaId;
+          }
+      }
+            </script>
+        </div>
+    </div>
+</div>
+
+

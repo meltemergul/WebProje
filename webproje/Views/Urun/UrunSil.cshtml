@@ -1,0 +1,44 @@
+﻿@model List<webproje.Models.Urun>
+
+@{
+    ViewBag.Title = " Uye Sil";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="col-sm-8">
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>Ürün Id</th>
+            <th>Ürün Adı</th>
+            <th>Ürün Açıklama</th>
+            <th>Fiyat</th>
+            <th>Renk</th>
+            <th>Kategori</th>
+            <th>Marka</th>
+            <th>Ürün Yorum</th>
+            <th>Ürün Foto</th>
+            <th>Ürün Stok</th>
+        </tr>
+        <tbody>
+            @foreach (var urunler in Model)
+            {
+                <tr>
+                    <td>@urunler.urunId</td>
+                    <td> @urunler.urunAdi</td>
+                    <td>@urunler.urunAciklama</td>
+                    <td> @urunler.fiyat</td>
+                    <td>@urunler.renk</td>
+                    <td> @urunler.kategoriId</td>
+                    <td>@urunler.markaId</td>
+                    <td> @urunler.urunYorumId</td>
+                    <td> <img src="@Url.Action("Image", "Urun", new { imagePath = urunler.urunFoto })" alt="Urun Resmi" style="max-width: 100px; max-height: 100px;" /></td>
+
+                    <td> @urunler.urunStok</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+

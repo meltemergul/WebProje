@@ -1,0 +1,70 @@
+﻿
+
+
+@using webproje.Models
+@model List<webproje.Models.Siparis>
+
+
+@{
+
+    ViewBag.Title = "Sipariş Listele";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="container-fluid mt-5 ">
+    <div class="row">
+        <div class="col-sm-4">
+            <h3>Siparişler</h3>
+            <ul class="nav nav-pills flex-column" style="font-weight: bold;">
+                <li class="nav-item">
+                    <a class="nav-link active " style="background-color:steelblue" href="@Url.Action("SiparisListele", "Siparis")">LİSTELE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black" href="@Url.Action("SiparisEkle", "Siparis")">EKLE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black " href="@Url.Action("SiparisSil", "Siparis")">SİL</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black" href="@Url.Action("SiparisGüncelle", "Siparis")">GÜNCELLE</a>
+                </li>
+
+            </ul>
+            <hr class="d-sm-none">
+        </div>
+        <div class="col-sm-8">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th>Sipariş Id</th>
+                    <th>Urun Id</th>
+                    <th>Sipariş Tarihi</th>
+                    <th>Uye Id</th>
+                    <th>Adet</th>
+                    <th>Kargo Id</th>
+                    <th>Siparis Durum Id</th>
+                    <th>İşlemler</th>
+                </tr>
+                <tbody>
+                    @foreach (var siparis in Model)
+                    {
+                        <tr>
+                            <td>@siparis.siparisId</td>
+                            <td> @siparis.urunId</td>
+                            <td>@siparis.siparisTarihi</td>
+                            <td> @siparis.uyeId</td>
+                            <td>@siparis.adet</td>
+                            <td> @siparis.kargoId</td>
+                            <td>@siparis.siparisDurumId</td>
+                            <td>
+                                <a href="@Url.Action("SiparisSil", "Siparis", new { siparisId=siparis.siparisId })" class="btn btn-danger btn-sm  fw-bold">Sil</a>
+                                <a href="@Url.Action("SiparisGuncelle", "Siparis", new { siparisId=siparis.siparisId})" class="btn btn-warning btn-sm fw-bold">Güncelle</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,140 @@
+﻿@model webproje.Models.Urun
+@using webproje.Models
+
+@{
+    ViewBag.Title = "Ürün Ekle";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="container-fluid mt-5 ">
+    <div class="row">
+        <div class="col-sm-4">
+            <h3>Ürünler</h3>
+            <ul class="nav nav-pills flex-column" style="font-weight: bold;">
+                <li class="nav-item">
+                    <a class="nav-link text-black " href="@Url.Action("UrunListele", "Urun")">LİSTELE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active " style="background-color:steelblue" href="@Url.Action("UrunEkle", "Urun")">EKLE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black " href="@Url.Action("UrunSil", "Urun")">SİL</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black" href="@Url.Action("UrunGuncelle", "Urun")">GÜNCELLE</a>
+                </li>
+            </ul>
+            <hr class="d-sm-none">
+        </div>
+        <div class="col-sm-8">
+            <h3>Ürün Ekle</h3>
+            <hr />
+
+            @using (Html.BeginForm("UrunEkle", "Urun", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                <div class="row">
+                    <div class="col-sm-2 fw-bold">
+                        @Html.LabelFor(model => model.urunAdi, new { @class = "control-label " })
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(model => model.urunAdi, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.urunAdi, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-sm-2 fw-bold">
+                        @Html.LabelFor(model => model.urunAciklama, new { @class = "control-label " })
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(model => model.urunAciklama, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.urunAciklama, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-2 fw-bold">
+                        @Html.LabelFor(model => model.fiyat, new { @class = "control-label " })
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(model => model.fiyat, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.fiyat, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-sm-2 fw-bold">
+                        @Html.LabelFor(model => model.renk, new { @class = "control-label " })
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(model => model.renk, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.renk, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="row">
+
+
+                    <div class="col-sm-2 fw-bold">
+                        @Html.LabelFor(model => model.kategoriId, new { @class = "control-label " })
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(model => model.kategoriId, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.kategoriId, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-sm-2 fw-bold">
+                        @Html.LabelFor(model => model.markaId, new { @class = "control-label " })
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(model => model.markaId, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.markaId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row">
+
+
+                    <div class="col-sm-2 fw-bold">
+                        @Html.LabelFor(model => model.urunYorumId, new { @class = "control-label " })
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(model => model.urunYorumId, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.urunYorumId, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-sm-2 fw-bold">
+                        @Html.LabelFor(model => model.urunStok, new { @class = "control-label " })
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(model => model.urunStok, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.urunStok, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-2 fw-bold">
+                        @Html.LabelFor(model => model.urunFoto, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="file" name="UrunFoto" id="UrunFoto" style="display: none;" onchange="dosyaAdiniGuncelle()" />
+                        <input type="text" id="UrunFotoAdi" class="form-control" readonly />
+                        </div>
+                    <div class="col-sm-1">
+                        <label for="UrunFoto" class="btn btn-primary">Gözat</label>
+                        @Html.ValidationMessageFor(model => model.urunFoto, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        <input type="submit" value="Ekle" class="btn " style="background-color:steelblue; color:white" />
+                    </div>
+                </div>
+            }
+        </div>
+            </div>
+     
+    </div>
+
+    <script>
+        function dosyaAdiniGuncelle() {
+            var fileName = document.getElementById("UrunFoto").value.split("\\").pop();
+            document.getElementById("UrunFotoAdi").value = fileName;
+        }
+    </script>

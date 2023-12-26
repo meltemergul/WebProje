@@ -1,0 +1,63 @@
+﻿@model webproje.Models.Uye
+@using webproje.Models
+
+@{
+    ViewBag.Title = "Üye Girişi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5  ">
+    <div class="row">
+        <div class="col-sm-4">
+
+
+
+            <ul class="nav nav-pills flex-column" style="font-weight: bold;">
+                <li class="nav-item">
+                    <a class="nav-link text-black" href="@Url.Action("UyeOl", "Uye")">Üye Ol</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active " style="background-color:olivedrab" href="@Url.Action("UyeGirisi", "Uye")">Üye Girişi</a>
+                </li>
+            </ul>
+            <hr class="d-sm-none">
+        </div>
+        <div class="col-sm-8 border p-3 bg-light ">
+            <h3 style="color:olivedrab">Üye Girişi</h3>
+            <hr />
+            @using (Html.BeginForm("UyeGirisi", "Uye", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+
+
+
+                <div class="col-sm-2 fw-bold">
+                    @Html.LabelFor(model => model.eposta, new { @class = "control-label " })
+                </div>
+                <div class="col-sm-3">
+                    @Html.TextBoxFor(model => model.eposta, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.eposta, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-sm-2 fw-bold">
+                    @Html.LabelFor(model => model.sifre, new { @class = "control-label " })
+                </div>
+                <div class="col-sm-3">
+                    @Html.PasswordFor(model => model.sifre, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.sifre, "", new { @class = "text-danger" })
+                </div>
+
+
+
+
+
+
+                <div class="row mt-2">
+                    <div class="col-sm-3">
+                        <input type="submit" value="ÜYE GİRİŞİ" class="btn " style="background-color:olivedrab; color:white" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

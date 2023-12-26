@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Çanta</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container-fluid {
+            padding-right: 0;
+            padding-left: 0;
+        }
+
+        .navbar {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+        <div class="container">
+            @Html.ActionLink("Çanta Dünyası", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon">M</span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto h6">
+                 
+                    <li class="nav-item ">
+                        @Html.ActionLink("Ürünler", "Urunler", "Urun", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Sepetim", "Siparisler", "Siparis", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+
+                    <li>@Html.ActionLink("Hakkımızda", "Aciklama", "Hakkimizda", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("İletişim", "IletisimPage", "Iletisim", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Üye Ol", "UyeOl", "Uye", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Ara.." aria-label="Search">
+
+                </form>
+                <div class="fw-bold pt-2 px-2">
+                    @{
+                        var uyeAdi = Session["uyeAdi"] as string;
+                    }
+
+                    @if (!string.IsNullOrEmpty(uyeAdi))
+                    {
+                        <p >Hoş Geldin, @uyeAdi! <a  href="@Url.Action("CikisYap", "Uye")">Çıkış Yap</a></p>
+                    }
+                    else
+                    {
+                        <p>Hoş Geldiniz!</p>
+                    }
+
+                </div>
+              
+
+            </div>
+        </div>
+    </nav>
+ 
+
+
+    <div class="container-fluid body-content">
+        @RenderBody()
+
+        <hr />
+
+        <div class=" text-black text-center">
+        
+            <footer class="footer mt-auto py-3 bg-light ">
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <h5>Hakkımızda</h5>
+                            <ul class="list-unstyled text-small">
+
+                                <li><a class="text-muted" href="#">Teslimat Koşulları</a></li>
+                                <li><a class="text-muted" href="@Url.Action("IletisimPage", "Iletisim")">İletişim</a></li>
+                                <li><a class="text-muted" href="#">Üyelik Sözleşmesi </a></li>
+                                <li><a class="text-muted" href="#">Satış Sözleşmesi </a></li>
+                                <!-- İhtiyacınıza göre diğer bağlantıları ekleyin -->
+                            </ul>
+                        </div>
+                        <div class="col-md-3">
+                            <h5>TESLİMAT VE İADE</h5>
+                            <ul class="list-unstyled text-small">
+
+
+                                <li><a class="text-muted" href="#">Garanti ve İade Koşulları</a>   </li>
+                                <li><a class="text-muted" href="#">Gizlilik ve Güvenlik</a></li>
+
+                                <!-- İhtiyacınıza göre diğer bağlantıları ekleyin -->
+                            </ul>
+                        </div>
+                        <div class="col-md-3">
+                            <h5>Üye</h5>
+                            <ul class="list-unstyled text-small">
+                                <li><a class="text-muted" href="@Url.Action("UyeOl", "Uye")">Yeni Üyelik</a></li>
+                                <li><a class="text-muted" href="@Url.Action("UyeGirisi", "Uye")">Üye Girişi</a></li>
+
+                                <!-- İhtiyacınıza göre diğer bağlantıları ekleyin -->
+                            </ul>
+
+                        </div>
+                        <div class="col-md-3">
+                            <h5>Sosyal Medya</h5>
+                            <ul class="list-unstyled text-small">
+                                <li><a class="text-muted" href="#">Instagram</a></li>
+                                <li><a class="text-muted" href="#">Twitter</a></li>
+
+                                <!-- İhtiyacınıza göre diğer bağlantıları ekleyin -->
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+                <p class="text-secondary">&copy; @DateTime.Now.Year - Web Proje</p>
+            </footer>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

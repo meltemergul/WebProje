@@ -1,0 +1,101 @@
+﻿@model webproje.Models.Siparis
+
+@using webproje.Models
+
+@{
+    ViewBag.Title = "Sipariş Ekle";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="container-fluid mt-5 ">
+    <div class="row">
+        <div class="col-sm-4">
+            <h3>Siparişler</h3>
+            <ul class="nav nav-pills flex-column" style="font-weight: bold;">
+                <li class="nav-item">
+                    <a class="nav-link text-black"  href="@Url.Action("SiparisListele", "Siparis")">LİSTELE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active " style="background-color:steelblue" href="@Url.Action("SiparisEkle", "Siparis")">EKLE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black " href="@Url.Action("SiparisSil", "Siparis")">SİL</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black" href="@Url.Action("SiparisGüncelle", "Siparis")">GÜNCELLE</a>
+                </li>
+
+            </ul>
+            <hr class="d-sm-none">
+        </div>
+        <div class="col-sm-8">
+            <h3>Sipariş Ekle</h3>
+            <hr />
+            @using (Html.BeginForm("SiparisEkle", "Siparis", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                <div class="row">
+                    <!-- Diğer alanlar buraya eklenebilir -->
+
+                    <div class="col-sm-2 fw-bold">
+                        @Html.LabelFor(model => model.urunId, new { @class = "control-label " })
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(model => model.urunId, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.urunId, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-sm-2 fw-bold">
+                        @Html.LabelFor(model => model.siparisTarihi, new { @class = "control-label " })
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(model => model.siparisTarihi, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.siparisTarihi, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-2 fw-bold">
+                        @Html.LabelFor(model => model.uyeId, new { @class = "control-label " })
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(model => model.uyeId, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.uyeId, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-sm-2 fw-bold">
+                        @Html.LabelFor(model => model.adet, new { @class = "control-label " })
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(model => model.adet, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.adet, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-2 fw-bold">
+                        @Html.LabelFor(model => model.kargoId, new { @class = "control-label " })
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(model => model.kargoId, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.kargoId, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-sm-2 fw-bold">
+                        @Html.LabelFor(model => model.siparisDurumId, new { @class = "control-label " })
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(model => model.siparisDurumId, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.siparisDurumId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        <input type="submit" value="Ekle" class="btn " style="background-color:steelblue; color:white" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,95 @@
+﻿@model List<webproje.Models.İletisim>
+@using webproje.Models
+@using webproje.Controllers
+
+@{
+    ViewBag.Title = "İletişim";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+ 
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 3px;
+        margin-bottom: 6px;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+        button:hover {
+            background-color: #45a049;
+        }
+</style>
+<div class="container-fluid bg-light  p-5">
+    <div class="row">
+        <div class="col-sm-6">
+            <h2>İletişim Bilgileri</h2>
+            <table>
+
+
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                       
+                        <td> <h4>@item.firmaAdi</h4></td>
+                    </tr>
+                    <tr>
+                        <th>Telefon</th>
+                        <th> : </th>
+                        <td>@item.telefon</td>
+                    </tr>
+
+                    <tr>
+                        <th>Eposta</th>
+                        <th> : </th>
+                        <td>@item.eposta</td>
+                    </tr>
+                    <tr>
+                        <th>Adres</th>
+                        <th> : </th>
+                        <td>@item.adres</td>
+
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="col-sm-6 border p-3">
+            <form action="#" method="post">
+                
+                <label for="telefon">Telefon:</label>
+                <input type="text" id="telefon" name="telefon" required>
+                
+                <label for="firmaAdi">Firma Adı:</label>
+                <input type="text" id="firmaAdi" name="firmaAdi" required>
+
+                <label for="eposta">Eposta:</label>
+                <input type="email" id="eposta" name="eposta" required>
+
+                <label for="adres">Adres:</label>
+                <textarea id="adres" name="adres" rows="4" required></textarea>
+
+                <label for="sehirId">Şehir ID:</label>
+                <input type="number" id="sehirId" name="sehirId" required>
+
+                <button type="submit">Gönder</button>
+            </form>
+            </div>
+        </div>
+    </div>

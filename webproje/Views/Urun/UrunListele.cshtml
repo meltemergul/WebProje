@@ -1,0 +1,95 @@
+﻿@using webproje.Models
+@model List<webproje.Models.Urun>
+@using webproje.Controllers
+
+@{
+    ViewBag.Title = "Ürün Listele";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+<div class="modal fade" id="büyükResimModal" tabindex="-1" role="dialog" aria-labelledby="büyükResimModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="büyükResimModalLabel">Ürün Fotoğrafı</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img id="büyükResim" src="" class="img-fluid" alt="Ürün Fotoğrafı">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-5 ">
+    <div class="row">
+        <div class="col-sm-3">
+             <h3>Ürünler</h3>
+            <ul class="nav nav-pills flex-column" style="font-weight: bold;">
+                <li class="nav-item">
+                    <a class="nav-link active " style="background-color:steelblue" href="">LİSTELE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black" href="@Url.Action("UrunEkle", "Urun")">EKLE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black " href=" @Url.Action("UrunSil", "Urun") ">SİL</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black" href=" @Url.Action("UrunGüncelle", "Urun") ">GÜNCELLE</a>
+                </li>
+
+            </ul>
+            <hr class="d-sm-none">
+        </div>
+        <div class="col-sm-9">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th>Ürün Id</th>
+                    <th>Ürün Adı</th>
+                    <th>Ürün Açıklama</th>
+                    <th>Fiyat</th>
+                    <th>Renk</th>
+                    <th>Kategori</th>
+                    <th>Marka</th>
+                    <th>Ürün Yorum</th>
+                    <th>Ürün Foto</th>
+                    <th>Ürün Stok</th>
+                    <th>İşlemler</th>
+                </tr>
+                <tbody>
+                    @foreach (var urunler in Model)
+                    {
+                        <tr>
+                            <td>@urunler.urunId</td>
+                            <td> @urunler.urunAdi</td>
+                            <td>@urunler.urunAciklama</td>
+                            <td> @urunler.fiyat</td>
+                            <td>@urunler.renk</td>
+                            <td> @urunler.kategoriId</td>
+                            <td>@urunler.markaId</td>
+                            <td> @urunler.urunYorumId</td>
+                            <td>  <a href="#" class="btn btn-secondary btn-sm fw-bold" onclick="büyükResmiGöster('@Url.Content("~/content/urunFoto/" + urunler.urunFoto)')">Ürün Fotoğraf</a></td>
+
+                            <td> @urunler.urunStok</td>
+                            <td>
+                                <a href="@Url.Action("UrunSil", "Urun", new { urunId=urunler.urunId })" class="btn btn-danger btn-sm  fw-bold">Sil</a>
+                                <a href="@Url.Action("UrunGuncelle", "Urun", new { urunId=urunler.urunId})" class="btn btn-warning btn-sm fw-bold">Güncelle</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+<script>
+    function büyükResmiGöster(resimUrl) {
+        // Modal içindeki resmi güncelle
+        $("#büyükResim").attr("src", resimUrl);
+        // Modal'ı göster
+        $("#büyükResimModal").modal("show");
+    }
+</script>
+
